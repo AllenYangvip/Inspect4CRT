@@ -1,11 +1,11 @@
 ﻿#$language = "VBScript"
 #$interface = "1.0"
-' Auth: AllenYang
+' Auth: Yangjh
 ' Desc: Huawei S device Inspect
 ' Date: 2019-10-25
 ' Version: 1.3
 ' Platform: SecureCRT
-' Email: allenyangvip@126.com
+' Email: yangjh@szkingdom.com
 
 ' 使用说明：
 '     1. 使用CRT连接到要巡检的设备，进入编辑状态(Cisco/Hillstone/Ruijie设备进入特权模式(#),H3C/Huawei/Juniper 进入普通模式(xxx>)即可)
@@ -22,7 +22,7 @@
 '     3. 问题3：脚本运行发生错误
 '         如果脚本发生错误，请重复试验几次(可能是CRT延迟问题)，如果超过3次仍然报错，请联系作者，谢谢
 ' 联系方式：
-'     allenyangvip@126.com  
+'     杨纪海    电话：18518461120(微信同号)  
 
 
 
@@ -71,6 +71,13 @@ Sub Main
     crt.Screen.Clear()
     crt.Screen.Send vbcrlf
     crt.Screen.WaitForString(Dprompt)
+    crt.Screen.Send vbcrlf
+    crt.Screen.WaitForString(Dprompt)
+    crt.Screen.Synchronous = True
+    crt.Screen.Send "screen-length 0 temporary" & vbcrlf
+    crt.Screen.WaitForString(Dprompt)
+    crt.Screen.Send vbcrlf
+    crt.Screen.WaitForString(Dprompt)
     For Each cmd In CMDArr
         r = GetResultByCmd(cmd, Dprompt)
     Next
@@ -78,6 +85,7 @@ Sub Main
     crt.Screen.Send vbcrlf
     crt.Screen.Send vbcrlf
     crt.Screen.WaitForString(Dprompt)
+    crt.Screen.Synchronous = False
     crt.Session.Disconnect
 End Sub
 

@@ -1,11 +1,11 @@
 ﻿#$language = "VBScript"
 #$interface = "1.0"
-' Auth: AllenYang
+' Auth: Yangjh
 ' Desc: Juniper SRX device Inspect
 ' Date: 2019-10-25
 ' Version: 1.3
 ' Platform: SecureCRT
-' Email: allenyangvip@126.com
+' Email: yangjh@szkingdom.com
 
 ' 使用说明：
 '     1. 使用CRT连接到要巡检的设备，进入编辑状态(Cisco/Hillstone/Ruijie设备进入特权模式(#),H3C/Huawei/Juniper 进入普通模式(xxx>)即可)
@@ -22,7 +22,7 @@
 '     3. 问题3：脚本运行发生错误
 '         如果脚本发生错误，请重复试验几次(可能是CRT延迟问题)，如果超过3次仍然报错，请联系作者，谢谢
 ' 联系方式：
-'     allenyangvip@126.com  
+'     杨纪海    电话：18518461120(微信同号)  
 
 
 
@@ -51,14 +51,16 @@ Sub Main
     crt.session.Log(true)
 
     ' 巡检命令数组
-    Dim CMDArr(7)
+    Dim CMDArr(9)
     CMDArr(0) = "show version detail no-forwarding | no-more"
     CMDArr(1) = "show system uptime no-forwarding | no-more"
     CMDArr(2) = "show chassis environment no-forwarding | no-more"
     CMDArr(3) = "show chassis routing-engine no-forwarding | no-more"
     CMDArr(4) = "show interfaces extensive no-forwarding | no-more"
     CMDArr(5) = "show configuration | display set | no-more"
-    CMDArr(6) = "request support information | no-more"
+    CMDArr(6) = "show system alarms | no-more"
+    CMDArr(7) = "show chassis alarms | no-more"
+    CMDArr(8) = "request support information | no-more"
     
     crt.Screen.Clear()
     crt.Screen.Send vbcrlf
